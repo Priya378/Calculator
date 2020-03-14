@@ -26,10 +26,13 @@ const inputNumber = (number) => {
 //Event to consider float number as input
 const decimalf = document.querySelector('.decimal')
 decimalf.addEventListener("click",()=>{
-    currentInput=currentInput+"."
+    findDecimal()
     updateScreen(currentInput)
 
 })
+const findDecimal=()=>{
+    currentInput=currentInput+"."
+}
 //Taking operator as input when clicked
 const operators = document.querySelectorAll(".operator")
 operators.forEach((operator)=>{
@@ -50,16 +53,14 @@ const equalSign = document.querySelector('.equal_sign')
 equalSign.addEventListener("click",()=>{
     calculate()
     updateScreen(currentInput)
-    prevInput = '0'
-    calculationOperator = ''
-    currentInput = '0'  
+    clearScreen() 
 })
 //Function definition to calculate result
 const calculate=()=>{
     let result=0
     switch(calculationOperator){
         case '+':
-            result=parseInt(prevInput) + parseInt(currentInput)
+            result=parseFloat(prevInput) + parseFloat(currentInput)
             break
         case '-':
             result=prevInput - currentInput
@@ -80,21 +81,24 @@ const calculate=()=>{
 //Clearing screen
 const clear = document.querySelector('.all_clear')
 clear.addEventListener("click",()=>{
-    prevInput = '0'
-    calculationOperator = ''
-    currentInput = '0'
+    clearScreen()
     updateScreen(currentInput)
 
 })
+const clearScreen=()=>{
+    currentInput='0'
+    calculationOpeartor=''
+}
 //Calculating percentage
 const percent = document.querySelector('.percentage')
 percent.addEventListener("click",()=>{
-    let result=parseFloat(currentInput)/100
-    currentInput=result.toString()
+    findPercent()
     updateScreen(currentInput)
-    prevInput = '0'
-    calculationOperator = ''
-    currentInput = '0'
+    clearScreen()
 })
+const findPercent=()=>{
+    let result=parseFloat(currentInput)/100
+    currentInput=result.toString()    
+}
 
 
